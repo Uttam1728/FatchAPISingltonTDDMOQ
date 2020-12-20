@@ -1,3 +1,5 @@
+using FatchAPISingltonTDDMOQ.Controllers;
+using FatchAPISingltonTDDMOQ.SingleTonFatchDataRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,7 @@ namespace FatchAPISingltonTDDMOQ
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<ISingleTonFatchData, SingleTonFatchData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

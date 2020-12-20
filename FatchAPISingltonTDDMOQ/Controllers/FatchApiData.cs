@@ -5,39 +5,32 @@ using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-
+using FatchAPISingltonTDDMOQ.SingleTonFatchDataRepo;
 namespace FatchAPISingltonTDDMOQ.Controllers
 {
     [Route("api/[controller]")]
     public class FatchApiData : Controller
     {
-        public List<JsonData> WholeData { get; private set; }
+        private ISingleTonFatchData _ds;
 
-        public FatchApiData()
+        public FatchApiData(ISingleTonFatchData ds)
         {
-
-            var json = new WebClient().DownloadString("https://dashboard.healthit.gov/api/open-api.php?source=hospital-mu-public-health-measures.csv");
-            this.WholeData = JsonSerializer.Deserialize<List<JsonData>>(json);
-
+            _ds = ds;
+            
         }
 
-        [Route("getstatelist")]
-        [HttpGet]
+        
+        [HttpGet("getstatelist")]
         public HashSet<string> GetStateList()
         {
-            HashSet<string> s = new HashSet<string>(); ;
-            foreach (JsonData ele in WholeData)
-            {
-                s.Add(ele.region);
-            }
-            return s;
+            return _ds.GetStateList();
         }
 
-        [Route("getstatedata")]
-        [HttpGet]
+       
+        [HttpGet("getstatedata/{year}/{state}")]
         public JsonData GetStatedata(string year, string state)
         {
-            return year == null || state == null ? null : WholeData.Where(x => x.period == year && x.region == state).FirstOrDefault();
+            return _ds.GetStateData(year, state);
         }
     }
 }
