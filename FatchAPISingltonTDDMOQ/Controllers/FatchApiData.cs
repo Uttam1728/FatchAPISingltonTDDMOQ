@@ -30,7 +30,8 @@ namespace FatchAPISingltonTDDMOQ.Controllers
         [HttpGet("getstatedata/{year}/{state}")]
         public JsonData GetStatedata(string year, string state)
         {
-            return _ds.GetStateData(year, state);
+            var data =  _ds.GetStateData(year, state);
+            return data;
         }
     }
 }
