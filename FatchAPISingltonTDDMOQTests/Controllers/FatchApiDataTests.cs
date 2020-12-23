@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Moq;
 using FatchAPISingltonTDDMOQ.SingleTonFatchDataRepo;
-
+using FatchAPISingltonTDDMOQ.Models;
 
 namespace FatchAPISingltonTDDMOQ.Controllers.Tests
 {

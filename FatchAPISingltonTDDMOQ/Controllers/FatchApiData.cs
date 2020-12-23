@@ -6,6 +6,8 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FatchAPISingltonTDDMOQ.SingleTonFatchDataRepo;
+using FatchAPISingltonTDDMOQ.Models;
+
 namespace FatchAPISingltonTDDMOQ.Controllers
 {
     [Route("api/[controller]")]
